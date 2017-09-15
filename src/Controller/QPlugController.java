@@ -8,20 +8,23 @@ import View.GUI;
 public class QPlugController {
 	
 	private QPlugModel model;
+	private GUI view;
 	
-	public QPlugController() {
+	public QPlugController(GUI view, QPlugModel model) {
 		
 	}
 	
-	@Autowired
-    public void setQPlugModel(QPlugModel model) {
-        this.model = model;
-    }
+	// Injecting model to controller
+//	@Autowired
+//    public void setQPlugModel(QPlugModel model) {
+//        this.model = model;
+//    }
 	
-	@Autowired
-    public void setView(GUI model) {
-        
-    }
+	// Injecting view to controller
+//	@Autowired
+//    public void setView(GUI view) {
+//        this.view = view;
+//    }
 	
 	public void turnOn(){
 		model.setStatus(1);

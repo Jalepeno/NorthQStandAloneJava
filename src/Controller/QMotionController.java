@@ -1,19 +1,16 @@
 package Controller;
 
-import javax.swing.text.View;
-
 import Models.QMotionModel;
+import View.GUI;
 
 public class QMotionController {
 
-	QMotionModel motionModel;
-	View motionModelView;
+	QMotionModel model;
+	GUI view;
 	
-	public QMotionController() {
-		
+	public QMotionController(GUI view, QMotionModel model) {
+		this.model = model;
+		this.view = view;
 	}
-	
-	public void setMotionModel() {
-		this.motionModel = motionModel;
-	}
+
 }

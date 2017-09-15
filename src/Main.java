@@ -1,29 +1,29 @@
-import javax.swing.SwingUtilities;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import Controller.QMotionController;
 import Controller.QPlugController;
+import Models.QMotionModel;
 import Models.QPlugModel;
 import View.GUI;
 
 public class Main {
 
 	public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-            	
-            	GUI view = new GUI();
-                
-//            	QPlugModel qPlugModel = new QPlugModel();
-                
-//                QPlugController qPlugController = new QPlugController(view,qPlugModel);
-                
-                view.setVisible(true);
-            	
-//                GUI app = new GUI();
-//                app.setVisible(true);
-            }
-        });
+		
+		// View
+		GUI view = new GUI();
+		
+		// QPlug
+		QPlugModel qPlugModel = new QPlugModel();
+		QPlugController qPlugController = new QPlugController(view, qPlugModel);
+		
+		// QMotion
+		QMotionModel qMotionModel = new QMotionModel();
+		QMotionController qMotionController = new QMotionController(view, qMotionModel);
+		
+		view.setVisible(true);
 	}
-
+	
 }
