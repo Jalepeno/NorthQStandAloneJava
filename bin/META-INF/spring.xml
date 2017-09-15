@@ -11,7 +11,11 @@
 	
 	<bean id="view" class="GUI" />
 	<bean id="qPlugModel" class="QPlugController" />
-
+	
+	<bean id="main" class="Main">
+		<property name="view" ref="view" />
+	</bean>
+	
 	<bean id="qPlugController" class="QPlugController">
 		<property name="view" ref="view" />
 		<property name="qPlugModel" ref="qPlugModel" />

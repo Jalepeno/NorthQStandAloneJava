@@ -34,27 +34,27 @@
 	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-MEDIA-JSON-BINDING.JAR"/>
 	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-MEDIA-SSE.JAR"/>
 	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-SERVER.JAR"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-aop-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-aspects-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-beans-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-context-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-context-support-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-core-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-expression-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-instrument-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-instrument-tomcat-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-jdbc-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-jms-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-messaging-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-orm-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-oxm-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-test-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-tx-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-web-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-webmvc-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-webmvc-portlet-4.3.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-websocket-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="res/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="res/spring/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-aop-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-aspects-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-beans-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-context-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-context-support-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-core-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-expression-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-instrument-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-instrument-tomcat-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-jdbc-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-jms-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-messaging-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-orm-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-oxm-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-test-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-tx-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-web-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-webmvc-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-webmvc-portlet-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/spring/spring-websocket-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
