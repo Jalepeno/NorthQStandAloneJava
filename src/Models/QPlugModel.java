@@ -1,22 +1,25 @@
 package Models;
 
+import Services.NorthQRestfulUtils;
+
 public class QPlugModel {
-	int status;
-	
-	public QPlugModel(){
-		
-	}
-	
-	public QPlugModel(int status){
-		this.status = status;
-	}
+    int status;
+    NorthQRestfulUtils nq = new NorthQRestfulUtils();
 
-	public int getStatus() {
-		return status;
-	}
+    public QPlugModel() {
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    }
+
+    public QPlugModel(int status) {
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
 }

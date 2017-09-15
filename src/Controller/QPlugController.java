@@ -2,9 +2,6 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import Models.QPlugModel;
 import Services.QPlugService;
@@ -12,57 +9,65 @@ import View.GUI;
 
 public class QPlugController {
 
-	private QPlugModel model;
-	private GUI view;
-	private QPlugService service;
+    private QPlugModel model;
+    private GUI view;
+    private QPlugService service;
 
-	public QPlugController(GUI view, QPlugModel model) {
-		this.view = view;
-		this.model = model;
+    public QPlugController(GUI view, QPlugModel model) {
+        this.view = view;
+        this.model = model;
 
-		this.service = new QPlugService();
-		
-		// Enable event listener
-		this.view.addQPlugListener(new addQPlugListener());
-	}
+        this.service = new QPlugService();
 
-	// TODO: Inject model
-	// @Autowired
-	// public void setQPlugModel(QPlugModel model) {
-	// this.model = model;
-	// }
+        // Enable event listener
+        this.view.addQPlugListener(new addQPlugListener(service, model));
+    }
 
-	// TODO: Inject view
-	// @Autowired
-	// public void setView(GUI view) {
-	// this.view = view;
-	// }
+    // TODO: Inject model
+    // @Autowired
+    // public void setQPlugModel(QPlugModel model) {
+    // this.model = model;
+    // }
 
-	// TODO: Inject service
-	// @Autowired
-	// public void setQPlugService(IQPlugService service) {
-	// this.service = service;
-	// }
+    // TODO: Inject view
+    // @Autowired
+    // public void setView(GUI view) {
+    // this.view = view;
+    // }
 
-	public void turnOn() {
-		model.setStatus(1);
-	}
+    // TODO: Inject service
+    // @Autowired
+    // public void setQPlugService(IQPlugService service) {
+    // this.service = service;
+    // }
 
-	public void turnOff() {
-		model.setStatus(0);
-	}
-
-	public int getStatus() {
-		return model.getStatus();
-	}
+    public int getStatus() {
+        return model.getStatus();
+    }
 
 }
 
 // Action listener to receive event from view
 class addQPlugListener implements ActionListener {
 
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("QPlug clicked");
-	}
+    private QPlugService service;
+    private QPlugModel model;
+
+    public addQPlugListener(QPlugService service, QPlugModel model) {
+        this.service = service;
+        this.model = model;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(model.getStatus());
+        if (model.getStatus() == 0) {
+            service.turnOnPlug();
+            model.setStatus(1);
+        } else {
+            service.turnOffPlug();
+            model.setStatus(0);
+        }
+    }
 
 }
