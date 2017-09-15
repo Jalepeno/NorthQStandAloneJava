@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/api/JAVAX.WS.RS-API-2.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/AOPALLIANCE-REPACKAGED-2.5.0-B42.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/CDI-API-1.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/EL-API-2.2.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/HK2-API-2.5.0-B42.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/HK2-LOCATOR-2.5.0-B42.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/HK2-UTILS-2.5.0-B42.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVASSIST-3.22.0-CR2.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.ANNOTATION-API-1.2.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.INJECT-1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.INJECT-2.5.0-B42.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.JSON-1.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.JSON-API-1.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.JSON.BIND-API-1.0.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAVAX.SERVLET-API-3.0.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JAXB-API-2.2.7.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JBOSS-INTERCEPTORS-API_1.1_SPEC-1.0.0.BETA1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/JSR250-API-1.0.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/ORG.OSGI.CORE-4.2.0.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/OSGI-RESOURCE-LOCATOR-1.0.1.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/PERSISTENCE-API-1.0.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/VALIDATION-API-1.1.0.FINAL.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/ext/YASSON-1.0.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-CLIENT.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-COMMON.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-CONTAINER-SERVLET-CORE.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-CONTAINER-SERVLET.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-HK2.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-MEDIA-JAXB.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-MEDIA-JSON-BINDING.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-MEDIA-SSE.JAR"/>
+	<classpathentry exported="true" kind="lib" path="res/jaxrs-ri/lib/JERSEY-SERVER.JAR"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
