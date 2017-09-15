@@ -34,7 +34,6 @@ public class GUI extends JFrame {
 
         setLayout(new BorderLayout(10, 10));
 
-
         mainPanel.add(Button1, BorderLayout.WEST);
         mainPanel.add(Button2, BorderLayout.EAST);
         mainPanel.add(checkbox, BorderLayout.SOUTH);

@@ -55,5 +55,6 @@
 	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-webmvc-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-webmvc-portlet-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mikkel/Documents/Spring Jars/spring-websocket-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="res/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

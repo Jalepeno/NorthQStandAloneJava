@@ -7,7 +7,6 @@ import View.GUI;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -15,13 +14,11 @@ public class Main {
             	
             	GUI view = new GUI();
                 
-            	QPlugModel qPlugModel = new QPlugModel();
+//            	QPlugModel qPlugModel = new QPlugModel();
                 
-                QPlugController qPlugController = new QPlugController(view,qPlugModel);
+//                QPlugController qPlugController = new QPlugController(view,qPlugModel);
                 
                 view.setVisible(true);
-            	
-            	
             	
 //                GUI app = new GUI();
 //                app.setVisible(true);

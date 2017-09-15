@@ -1,25 +1,38 @@
 package Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import Models.QPlugModel;
 import View.GUI;
 
 public class QPlugController {
-	QPlugModel qPlugModel;
+	
+	private QPlugModel model;
+	
+	public QPlugController() {
 		
-	public QPlugController(GUI view, QPlugModel qPlugModel) {
-		// TODO Auto-generated constructor stub
 	}
 	
+	@Autowired
+    public void setQPlugModel(QPlugModel model) {
+        this.model = model;
+    }
+	
+	@Autowired
+    public void setView(GUI model) {
+        
+    }
+	
 	public void turnOn(){
-		qPlugModel.setStatus(1);
+		model.setStatus(1);
 	}
 	
 	public void turnOff(){
-		qPlugModel.setStatus(0);
+		model.setStatus(0);
 	}
 	
 	public int getStatus(){
-		return qPlugModel.getStatus(); 
+		return model.getStatus(); 
 	}
 
 }
