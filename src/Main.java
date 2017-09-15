@@ -21,6 +21,7 @@ public class Main {
         QMotionController qMotionController = new QMotionController(view, qMotionModel);
 
         view.setVisible(true);
+        // derp 
 
     }
 
