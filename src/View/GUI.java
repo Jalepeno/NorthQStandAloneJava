@@ -41,7 +41,7 @@ public class GUI extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(mainPanel);
     }
-    
+    //ldsjfljsdlfkjdskfj
     public void addQPlugListener(ActionListener listenForQPlugButton){
     	Button1.addActionListener(listenForQPlugButton);
 	}
