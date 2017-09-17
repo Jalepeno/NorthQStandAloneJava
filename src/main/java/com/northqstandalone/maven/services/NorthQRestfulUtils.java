@@ -11,6 +11,9 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class NorthQRestfulUtils {
 
 	// Requires: A URL target for a post http(s) service and a Form object
@@ -49,10 +52,9 @@ public class NorthQRestfulUtils {
 
 	// Requires: a JSON formatted string
 	// Returns: A map consisting of objects translated from JSON
-	// public Map<String, Object> getJsonMap(String jsonString) {
-	// return new Gson().fromJson(jsonString, new TypeToken<HashMap<String,
-	// Object>>() {
-	// }.getType());
-	// }
+	public Map<String, Object> getJsonMap(String jsonString) {
+		return new Gson().fromJson(jsonString, new TypeToken<HashMap<String, Object>>() {
+		}.getType());
+	}
 
 }
