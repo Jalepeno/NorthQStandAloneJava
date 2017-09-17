@@ -1,11 +1,14 @@
 package com.northqstandalone.maven.controllers;
 
+import com.northqstandalone.maven.models.QMotionModel;
+import com.northqstandalone.maven.view.View;
+
 public class QMotionController {
 
 	QMotionModel model;
-	GUI view;
+	View view;
 	
-	public QMotionController(GUI view, QMotionModel model) {
+	public QMotionController(View view, QMotionModel model) {
 		this.model = model;
 		this.view = view;
 	}

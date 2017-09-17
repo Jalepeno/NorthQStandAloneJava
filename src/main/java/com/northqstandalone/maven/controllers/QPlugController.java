@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.northqstandalone.maven.models.QPlugModel;
+import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
 
 public class QPlugController {
