@@ -8,7 +8,6 @@ import com.northqstandalone.maven.view.View;
 
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello all, Maven works");
 
 		// View
 		View view = new View();
