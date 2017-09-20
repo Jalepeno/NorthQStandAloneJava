@@ -1,5 +1,7 @@
 package com.northqstandalone.maven.controllers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.northqstandalone.maven.services.QPlugService;
@@ -18,7 +20,7 @@ public class TokenController {
 		this.service = service;
 	}
 
-	public String getToken() {
+	public String getToken() throws IOException {
 		return service.get();
 	}
 	
