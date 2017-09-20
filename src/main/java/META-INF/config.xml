@@ -10,18 +10,27 @@
 
 	<bean id="qPlugService" class="com.northqstandalone.maven.services.QPlugService" />
 	<bean id="qMotionService" class="com.northqstandalone.maven.services.QMotionService" />
-	
+	<bean id="northQService" class="com.northqstandalone.maven.services.NorthQRestfulUtils" />
+	<bean id="tokenService" class="com.northqstandalone.maven.services.TokenService">
+		<property name="northQService" ref="northQService" />
+	</bean>
+
 	<bean id="qPlugModel" class="com.northqstandalone.maven.models.QPlugModel" />
 	<bean id="qMotionModel" class="com.northqstandalone.maven.models.QMotionModel" />
-	
+
 	<bean id="qPlugController" class="com.northqstandalone.maven.controllers.QPlugController">
 		<property name="qPlugService" ref="qPlugService" />
 		<property name="qPlugModel" ref="qPlugModel" />
 	</bean>
-	
-	<bean id="qMotionController" class="com.northqstandalone.maven.controllers.QMotionController">
+
+	<bean id="qMotionController"
+		class="com.northqstandalone.maven.controllers.QMotionController">
 		<property name="qMotionService" ref="qMotionService" />
 		<property name="qMotionModel" ref="qMotionModel" />
+	</bean>
+
+	<bean id="tokenController" class="com.northqstandalone.maven.controllers.TokenController">
+		<property name="tokenService" ref="tokenService" />
 	</bean>
 
 </beans>

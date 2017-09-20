@@ -16,6 +16,7 @@ public class QMotionController {
     private QMotionModel model;
     private View view;
     private QMotionService service;
+    private String token;
 
     @Autowired
 	public void setQMotionService(QMotionService service) {
@@ -27,9 +28,10 @@ public class QMotionController {
 		this.model = model;
 	}
 	
-	public void setView(View view) {
+	public void setView(View view, String token) {
 		this.view = view;
-
+		this.token = token;
+		
 		// Enable event listener
 		this.view.addQMotionListener(new addQMotionListener(service, model));
 	}
