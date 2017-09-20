@@ -37,5 +37,9 @@ public class View extends JFrame {
     public void addQPlugListener(ActionListener listenForQPlugButton){
     	Button1.addActionListener(listenForQPlugButton);
 	}
+    
+    public void addQMotionListener(ActionListener listenForQMotionButton){
+    	Button2.addActionListener(listenForQMotionButton);
+	}
 
 }

@@ -1,5 +1,9 @@
 package com.northqstandalone.maven.app;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.northqstandalone.maven.controllers.QMotionController;
 import com.northqstandalone.maven.controllers.QPlugController;
 import com.northqstandalone.maven.models.QMotionModel;
@@ -8,18 +12,20 @@ import com.northqstandalone.maven.view.View;
 
 public class App {
     public static void main(String[] args) {
+    	
+    	ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/config.xml");
 
-        // View
+		BeanFactory factory = context;
+
+		// View
         View view = new View();
-
-        // QPlug
-        QPlugModel qPlugModel = new QPlugModel();
-        QPlugController qPlugController = new QPlugController(view, qPlugModel);
-
-        // QMotion
-        QMotionModel qMotionModel = new QMotionModel();
-        QMotionController qMotionController = new QMotionController(view, qMotionModel);
-
+		
+		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
+		qPlugController.setView(view);
+    	
+		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
+		qMotionController.setView(view);
+		
         view.setVisible(true);
 
         /*
