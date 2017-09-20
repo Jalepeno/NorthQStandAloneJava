@@ -14,6 +14,7 @@ public class QPlugController {
     private QPlugModel model;
     private View view;
     private QPlugService service;
+    private String token;
 
     @Autowired
 	public void setQPlugService(QPlugService service) {
@@ -25,8 +26,9 @@ public class QPlugController {
 		this.model = model;
 	}
 	
-	public void setView(View view) {
+	public void setView(View view, String token) {
 		this.view = view;
+		this.token = token;
 
 		// Enable event listener
 		this.view.addQPlugListener(new addQPlugListener(service, model));
