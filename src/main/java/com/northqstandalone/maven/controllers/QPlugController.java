@@ -3,6 +3,8 @@ package com.northqstandalone.maven.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
@@ -13,33 +15,22 @@ public class QPlugController {
     private View view;
     private QPlugService service;
 
-    public QPlugController(View view, QPlugModel model) {
-        this.view = view;
-        this.model = model;
+    @Autowired
+	public void setQPlugService(QPlugService service) {
+		this.service = service;
+	}
+	
+	@Autowired
+	public void setQPlugModel(QPlugModel model) {
+		this.model = model;
+	}
+	
+	public void setView(View view) {
+		this.view = view;
 
-        this.service = new QPlugService();
-
-        // Enable event listener
-        this.view.addQPlugListener(new addQPlugListener(service, model));
-    }
-
-    // TODO: Inject model
-    // @Autowired
-    // public void setQPlugModel(QPlugModel model) {
-    // this.model = model;
-    // }
-
-    // TODO: Inject view
-    // @Autowired
-    // public void setView(GUI view) {
-    // this.view = view;
-    // }
-
-    // TODO: Inject service
-    // @Autowired
-    // public void setQPlugService(IQPlugService service) {
-    // this.service = service;
-    // }
+		// Enable event listener
+		this.view.addQPlugListener(new addQPlugListener(service, model));
+	}
 
     public int getStatus() {
         return model.getStatus();
