@@ -23,10 +23,9 @@ public class App {
 		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
 		qPlugController.setView(view);
     	
-        // QMotion
-        QMotionModel qMotionModel = new QMotionModel();
-        QMotionController qMotionController = new QMotionController(view, qMotionModel);
-
+		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
+		qMotionController.setView(view);
+		
         view.setVisible(true);
 
         /*
