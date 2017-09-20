@@ -1,17 +1,19 @@
 package com.northqstandalone.maven.services;
 
+import java.io.IOException;
+
 import javax.ws.rs.core.Form;
 
 public class QPlugService {
 
     NorthQRestfulUtils nq = new NorthQRestfulUtils();
 
-    public void turnOnPlug() {
+    public void turnOnPlug() throws IOException {
         String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
         updateQplugStatus(1, token);
     }
 
-    public void turnOffPlug() {
+    public void turnOffPlug() throws IOException {
         String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
         updateQplugStatus(0, token);
     }

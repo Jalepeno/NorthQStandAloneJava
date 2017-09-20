@@ -1,5 +1,7 @@
 package com.northqstandalone.maven.services;
 
+import java.io.IOException;
+
 public class TokenService {
 	
 	private NorthQRestfulUtils utils;
@@ -8,7 +10,7 @@ public class TokenService {
 		this.utils = utils;
 	}
 	
-	public String get() {
+	public String get() throws IOException {
 		return utils.getTokenString();
 	}
 
