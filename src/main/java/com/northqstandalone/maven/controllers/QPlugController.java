@@ -46,10 +46,12 @@ public class QPlugController {
 			// If plug is on
 			System.out.println("Q plug is on, set value 1");
 			model.setStatus(1);
+			view.setIcon(1);
 		} else {
 			System.out.println("Q plug is off, set value 0");
 			// If plug is off
 			model.setStatus(0);
+			view.setIcon(0);
 		}
 	}
 

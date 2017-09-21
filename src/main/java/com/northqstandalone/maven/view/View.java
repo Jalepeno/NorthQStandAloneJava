@@ -75,6 +75,14 @@ public class View extends JFrame {
 			lightButton.setIcon(lightOffIcon);
 		}
 	}
+	
+	public void setIcon(int status) {
+		if (status == 1) {
+			lightButton.setIcon(lightOnIcon);
+		} else if (status == 0) {
+			lightButton.setIcon(lightOffIcon);
+		}
+	}
 
 	public void addQMotionListener(ActionListener addQMotionListener) {
 		// NOTHING!
