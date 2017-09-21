@@ -16,6 +16,7 @@ public class QPlugController {
 	private View view;
 	private QPlugService service;
 	private String token;
+	private boolean qPlugStatus;
 
 	@Autowired
 	public void setQPlugService(QPlugService service) {
@@ -27,12 +28,29 @@ public class QPlugController {
 		this.model = model;
 	}
 
-	public void setView(View view, String token) {
+	public void setView(View view, String token, boolean status) {
 		this.view = view;
 		this.token = token;
+		this.qPlugStatus = status;
+
+		setQPlugStatus(status);
 
 		// Enable event listener
 		this.view.addQPlugListener(new addQPlugListener(service, model, view));
+	}
+
+	private void setQPlugStatus(boolean status) {
+		// Change view and model based on status
+
+		if (qPlugStatus) {
+			// If plug is on
+			System.out.println("Q plug is on, set value 1");
+			model.setStatus(1);
+		} else {
+			System.out.println("Q plug is off, set value 0");
+			// If plug is off
+			model.setStatus(0);
+		}
 	}
 
 	public int getStatus() {

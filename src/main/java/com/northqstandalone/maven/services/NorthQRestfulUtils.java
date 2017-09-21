@@ -97,13 +97,30 @@ public class NorthQRestfulUtils {
 
 	// Requires: gatewayId, userId and a token (all strings)
 	// Returns: A http response
-	public Response getGetawayStatus(String gatewayId, String userId, String token) {
+	public Response getGatawayStatus(String gatewayId, String userId, String token) {
 		// https://homemanager.tv/main/getGatewayStatus?gateway={{gateway_id}}&user={{user_id}}&token={{token}}
 		String URL = "https://homemanager.tv/main/getGatewayStatus?gateway=" + gatewayId + "&user=" + userId + "&token="
 				+ token;
 		Response response = getHttpGetResponse(URL);
 		System.out.println(response.readEntity(String.class));
 		return response;
+	}
+
+	// Requires: gatewayId, userId and a token (all strings)
+	// Returns: A http response
+	public String getGatewayStatusJSON(String gatewayId, String userId, String token) {
+		// https://homemanager.tv/main/getGatewayStatus?gateway={{gateway_id}}&user={{user_id}}&token={{token}}
+		String URL = "https://homemanager.tv/main/getGatewayStatus?gateway=" + gatewayId + "&user=" + userId + "&token="
+				+ token;
+		Response response = getHttpGetResponse(URL);
+		if (response.getStatus() == 200) {
+			String json = response.readEntity(String.class);
+			response.close();
+			return json;
+		} else {
+			response.close();
+			throw new NullPointerException("status not recieved http error code: " + response.getStatus());
+		}
 	}
 
 	// Requires: a userId and a token both strings
