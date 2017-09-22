@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -30,9 +31,12 @@ public class View extends JFrame {
 	private ImageIcon lightOffIcon = new ImageIcon(turnedOffImage);
 
 	private String motionString = new String(
-			"Temperature: " + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
+			"Temperature: "  + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
+	private String armedString = new String("Armed");
+	private String disarmedString = new String("Disarmed");
 
 	private JButton lightButton = new JButton("QPlug", lightOffIcon);
+	private JButton motionButton = new JButton("QMotion");
 	private JTextArea motionInfo = new JTextArea(motionString);
 	private JCheckBox combineCheckBox = new JCheckBox("light on motion");
 
@@ -46,7 +50,8 @@ public class View extends JFrame {
 
 		setLayout(new BorderLayout(10, 10));
 
-		motionInfoPanel.add(motionInfo, BorderLayout.WEST);
+		motionInfoPanel.add(motionInfo, BorderLayout.NORTH);
+		motionInfoPanel.add(motionButton, BorderLayout.SOUTH);
 		motionInfo.setOpaque(false);
 
 		mainPanel.add(lightButton, BorderLayout.WEST);
@@ -65,16 +70,13 @@ public class View extends JFrame {
 
 	public void addQPlugListener(ActionListener listenForQPlugButton) {
 		lightButton.addActionListener(listenForQPlugButton);
+
 	}
 
-//	public void clickButton(int status) {
-//		if (status == 1) {
-//			lightButton.setIcon(lightOnIcon);
-//		} else if (status == 0) {
-//			lightButton.setIcon(lightOffIcon);
-//		}
-//	}
-	
+	public void addQMotionListener(ActionListener listenQMotionListener) {
+		motionButton.addActionListener(listenQMotionListener);
+	}
+
 	public void setIcon(int status) {
 		if (status == 1) {
 			lightButton.setIcon(lightOnIcon);
@@ -83,7 +85,11 @@ public class View extends JFrame {
 		}
 	}
 
-	public void addQMotionListener(ActionListener addQMotionListener) {
-		// NOTHING!
+	public void setMotionLabel(int status) {
+		if (status == 1) {
+			motionButton.setText(armedString);
+		} else if (status == 0) {
+			motionButton.setText(disarmedString);
+		}
 	}
 }
