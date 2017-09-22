@@ -23,6 +23,7 @@ public class View extends JFrame {
 
 	private JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
 	private JPanel motionInfoPanel = new JPanel(new BorderLayout(10, 10));
+	private JPanel motionButtonPanel = new JPanel(new BorderLayout(10,10));
 
 	BufferedImage turnedOnImage = ImageIO.read(new File("bulbOn.png"));
 	BufferedImage turnedOffImage = ImageIO.read(new File("bulbOff.png"));
@@ -31,10 +32,11 @@ public class View extends JFrame {
 	private ImageIcon lightOffIcon = new ImageIcon(turnedOffImage);
 
 	private String motionString = new String(
-			"Temperature: "  + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
-	private String armedString = new String("Armed");
-	private String disarmedString = new String("Disarmed");
-
+			"Temperature: " + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
+	private String armString = new String("Arm");
+	private String disarmString = new String("Disarm");
+	
+	private JLabel motionInfoLabel = new JLabel("MOTION STATUS");
 	private JButton lightButton = new JButton("QPlug", lightOffIcon);
 	private JButton motionButton = new JButton("QMotion");
 	private JTextArea motionInfo = new JTextArea(motionString);
@@ -45,17 +47,20 @@ public class View extends JFrame {
 		super("Q Equalizer!");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(300, 300));
+		setSize(new Dimension(350, 300));
 		setResizable(false);
 
 		setLayout(new BorderLayout(10, 10));
+		
+		motionButtonPanel.add(motionButton, BorderLayout.SOUTH);
+		motionButtonPanel.add(motionInfoLabel, BorderLayout.NORTH);
 
 		motionInfoPanel.add(motionInfo, BorderLayout.NORTH);
-		motionInfoPanel.add(motionButton, BorderLayout.SOUTH);
+		motionInfoPanel.add(motionButtonPanel, BorderLayout.SOUTH);
 		motionInfo.setOpaque(false);
 
-		mainPanel.add(lightButton, BorderLayout.WEST);
-		mainPanel.add(motionInfoPanel, BorderLayout.EAST);
+		mainPanel.add(lightButton, BorderLayout.EAST);
+		mainPanel.add(motionInfoPanel, BorderLayout.WEST);
 		mainPanel.add(combineCheckBox, BorderLayout.SOUTH);
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		add(mainPanel);
@@ -85,11 +90,21 @@ public class View extends JFrame {
 		}
 	}
 
-	public void setMotionLabel(int status) {
+	public void setMotionButtonText(int status) {
 		if (status == 1) {
-			motionButton.setText(armedString);
+			motionButton.setText(armString);
+			setMotionInfoLabel(0);
 		} else if (status == 0) {
-			motionButton.setText(disarmedString);
+			motionButton.setText(disarmString);
+			setMotionInfoLabel(1);
+		}
+	}
+	
+	public void setMotionInfoLabel (int status) {
+		if (status == 1) {
+			motionInfoLabel.setText("MotionSensor: Armed");
+		} else if (status == 0) {
+			motionInfoLabel.setText("MotionSensor: Disarmed");
 		}
 	}
 }

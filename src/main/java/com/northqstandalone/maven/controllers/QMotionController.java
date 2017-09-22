@@ -13,55 +13,73 @@ import com.northqstandalone.maven.view.View;
 
 public class QMotionController {
 
-    private QMotionModel model;
-    private View view;
-    private QMotionService service;
-    private String token;
+	private QMotionModel model;
+	private View view;
+	private QMotionService service;
+	private String token;
+	private boolean qMotionStatus;
 
-    @Autowired
+	@Autowired
 	public void setQMotionService(QMotionService service) {
 		this.service = service;
 	}
-	
+
 	@Autowired
 	public void setQMotionModel(QMotionModel model) {
 		this.model = model;
 	}
-	
-	public void setView(View view, String token) {
+
+	public void setView(View view, String token, boolean status) {
 		this.view = view;
 		this.token = token;
-		
+		this.qMotionStatus = status;
+
+		setQMotionStatus(status);
+
 		// Enable event listener
-		this.view.addQMotionListener(new addQMotionListener(service, model,view));
+		this.view.addQMotionListener(new addQMotionListener(service, model, view));
 	}
 
-    // Action listener to receive event from view
-    class addQMotionListener implements ActionListener {
+	private void setQMotionStatus(boolean status) {
+		// Change view and model based on status
+		if (qMotionStatus) {
+			// If motion sensor is armed
+			model.setArmed(true);
+			view.setMotionButtonText(0);
+		} else {
+			// If motion sensor is disarmed
+			model.setArmed(false);
+			view.setMotionButtonText(1);
+		}
 
-        private QMotionService service;
-        private QMotionModel model;
-        private View view;
+	}
 
-        public addQMotionListener(QMotionService service, QMotionModel model, View view) {
-            this.service = service;
-            this.model = model;
-            this.view = view;
-        }
+	// Action listener to receive event from view
+	class addQMotionListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	
-        	if (model.isArmed() == true) {
-        		service.disarmMotion(token);
-        		model.setArmed(false);
-        		view.setMotionLabel(0);
-        		
-        	}else if (model.isArmed() == false) {
-        		service.armMotion(token);
-        		model.setArmed(true);
-        		view.setMotionLabel(1);
-        	}
-        }
-    }
+		private QMotionService service;
+		private QMotionModel model;
+		private View view;
+
+		public addQMotionListener(QMotionService service, QMotionModel model, View view) {
+			this.service = service;
+			this.model = model;
+			this.view = view;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			if (model.isArmed() == true) {
+				service.disarmMotion(token);
+				model.setArmed(false);
+				view.setMotionButtonText(1);
+
+			} else if (model.isArmed() == false) {
+				service.armMotion(token);
+				model.setArmed(true);
+				view.setMotionButtonText(0);
+			}
+		}
+	}
 }

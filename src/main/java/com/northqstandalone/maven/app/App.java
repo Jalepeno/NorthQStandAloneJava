@@ -33,8 +33,10 @@ public class App {
 		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
 		qPlugController.setView(view, token, statusController.getQPlugStatus(token));
 
+		System.out.println(statusController.getQMotionStatus(token));
+		
 		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
-		qMotionController.setView(view, token);
+		qMotionController.setView(view, token, statusController.getQMotionStatus(token));
 
 		view.setVisible(true);
 
