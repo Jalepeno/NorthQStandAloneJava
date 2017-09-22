@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.northqstandalone.maven.controllers.QMotionController;
 import com.northqstandalone.maven.controllers.QPlugController;
+import com.northqstandalone.maven.controllers.StatusController;
 import com.northqstandalone.maven.controllers.TokenController;
 import com.northqstandalone.maven.models.QMotionModel;
 import com.northqstandalone.maven.models.QPlugModel;
@@ -26,9 +27,11 @@ public class App {
 		TokenController tokenController = (TokenController) factory.getBean("tokenController");
 		String token = tokenController.getToken();
 		System.out.println("Token received: " + token);
-
+		
+		StatusController statusController = (StatusController) factory.getBean("statusController");
+		
 		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
-		qPlugController.setView(view, token);
+		qPlugController.setView(view, token, statusController.getQPlugStatus(token));
 
 		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
 		qMotionController.setView(view, token);

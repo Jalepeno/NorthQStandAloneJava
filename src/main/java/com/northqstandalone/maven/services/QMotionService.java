@@ -49,8 +49,7 @@ public class QMotionService {
             stat = "255";
         }
         form.param("pos", stat);
-        System.out.println(services.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form)
-                .readEntity(String.class));
+        System.out.println(services.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class));
 
     }
 }
