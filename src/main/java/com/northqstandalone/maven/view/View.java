@@ -65,16 +65,15 @@ public class View extends JFrame {
 
 	public void addQPlugListener(ActionListener listenForQPlugButton) {
 		lightButton.addActionListener(listenForQPlugButton);
-
 	}
 
-	public void clickButton(int status) {
-		if (status == 1) {
-			lightButton.setIcon(lightOnIcon);
-		} else if (status == 0) {
-			lightButton.setIcon(lightOffIcon);
-		}
-	}
+//	public void clickButton(int status) {
+//		if (status == 1) {
+//			lightButton.setIcon(lightOnIcon);
+//		} else if (status == 0) {
+//			lightButton.setIcon(lightOffIcon);
+//		}
+//	}
 	
 	public void setIcon(int status) {
 		if (status == 1) {

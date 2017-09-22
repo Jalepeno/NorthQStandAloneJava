@@ -44,11 +44,9 @@ public class QPlugController {
 
 		if (qPlugStatus) {
 			// If plug is on
-			System.out.println("Q plug is on, set value 1");
 			model.setStatus(1);
 			view.setIcon(1);
 		} else {
-			System.out.println("Q plug is off, set value 0");
 			// If plug is off
 			model.setStatus(0);
 			view.setIcon(0);
@@ -76,27 +74,33 @@ class addQPlugListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
+		boolean status;
+		
 		if (model.getStatus() == 0) {
 			try {
-				service.turnOnPlug();
+				status = service.turnOnPlug();
+				if (status) {
+					view.setIcon(1);
+					model.setStatus(1);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.setStatus(1);
-			view.clickButton(1);
+
 		} else {
 			try {
-				service.turnOffPlug();
+				status = service.turnOffPlug();
+				if (status) {
+					view.setIcon(0);
+					model.setStatus(0);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.setStatus(0);
-			view.clickButton(0);
 		}
-		System.out.println(model.getStatus());
 	}
 
 }

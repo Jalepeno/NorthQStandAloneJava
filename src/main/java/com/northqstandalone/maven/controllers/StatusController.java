@@ -21,7 +21,6 @@ public class StatusController {
 		Object[] test = gson.fromJson(status, Object[].class);
 		Map<String, Object> json = utils.getJsonMap(test[0].toString());
 		plugStatus = json.get("pos").toString();
-		System.out.println(plugStatus);
 		return plugStatus.equals("255.0");
 	}
 
