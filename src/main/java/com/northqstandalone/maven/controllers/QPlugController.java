@@ -16,6 +16,7 @@ public class QPlugController {
 	private View view;
 	private QPlugService service;
 	private String token;
+	private boolean qPlugStatus;
 
 	@Autowired
 	public void setQPlugService(QPlugService service) {
@@ -27,12 +28,29 @@ public class QPlugController {
 		this.model = model;
 	}
 
-	public void setView(View view, String token) {
+	public void setView(View view, String token, boolean status) {
 		this.view = view;
 		this.token = token;
+		this.qPlugStatus = status;
+
+		setQPlugStatus(status);
 
 		// Enable event listener
 		this.view.addQPlugListener(new addQPlugListener(service, model, view));
+	}
+
+	private void setQPlugStatus(boolean status) {
+		// Change view and model based on status
+
+		if (qPlugStatus) {
+			// If plug is on
+			model.setStatus(1);
+			view.setIcon(1);
+		} else {
+			// If plug is off
+			model.setStatus(0);
+			view.setIcon(0);
+		}
 	}
 
 	public int getStatus() {
@@ -56,27 +74,33 @@ class addQPlugListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
+		boolean status;
+		
 		if (model.getStatus() == 0) {
 			try {
-				service.turnOnPlug();
+				status = service.turnOnPlug();
+				if (status) {
+					view.setIcon(1);
+					model.setStatus(1);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.setStatus(1);
-			view.clickButton(1);
+
 		} else {
 			try {
-				service.turnOffPlug();
+				status = service.turnOffPlug();
+				if (status) {
+					view.setIcon(0);
+					model.setStatus(0);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			model.setStatus(0);
-			view.clickButton(0);
 		}
-		System.out.println(model.getStatus());
 	}
 
 }

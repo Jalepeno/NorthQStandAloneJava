@@ -33,7 +33,7 @@ public class QMotionController {
 		this.token = token;
 		
 		// Enable event listener
-		this.view.addQMotionListener(new addQMotionListener(service, model));
+		this.view.addQMotionListener(new addQMotionListener(service, model,view));
 	}
 
     // Action listener to receive event from view
@@ -41,19 +41,27 @@ public class QMotionController {
 
         private QMotionService service;
         private QMotionModel model;
+        private View view;
 
-        public addQMotionListener(QMotionService service, QMotionModel model) {
+        public addQMotionListener(QMotionService service, QMotionModel model, View view) {
             this.service = service;
             this.model = model;
+            this.view = view;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        	// Perform thread here?
         	
-        	System.out.println("Hello");
+        	if (model.isArmed() == true) {
+        		service.disarmMotion(token);
+        		model.setArmed(false);
+        		view.setMotionLabel(0);
+        		
+        	}else if (model.isArmed() == false) {
+        		service.armMotion(token);
+        		model.setArmed(true);
+        		view.setMotionLabel(1);
+        	}
         }
-
     }
-
 }

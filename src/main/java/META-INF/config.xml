@@ -22,6 +22,10 @@
 		<property name="qPlugService" ref="qPlugService" />
 		<property name="qPlugModel" ref="qPlugModel" />
 	</bean>
+	
+	<bean id="statusController" class="com.northqstandalone.maven.controllers.StatusController">
+		<property name="northQService" ref="northQService" />
+	</bean>
 
 	<bean id="qMotionController"
 		class="com.northqstandalone.maven.controllers.QMotionController">
