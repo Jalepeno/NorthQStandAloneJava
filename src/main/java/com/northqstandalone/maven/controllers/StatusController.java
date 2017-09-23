@@ -56,7 +56,7 @@ public class StatusController {
 			Object[] test = gson.fromJson(status, Object[].class);
 			Map<String, Object> json = utils.getJsonMap(test[0].toString());
 			motionStatus = json.get("armed").toString();
-			
+			error.clearErrorMessage();
 			return motionStatus.equals("1.0");
 		}
 		catch (Exception e) {

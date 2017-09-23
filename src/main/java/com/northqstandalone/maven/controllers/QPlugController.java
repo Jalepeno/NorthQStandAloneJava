@@ -96,15 +96,21 @@ class addQPlugListener implements ActionListener {
 					model.setStatus(1);
 					error.clearErrorMessage();
 				}
+				else {
+					error.setErrorMessage("Error could not turn plug on");
+				}
 			} 
 			catch (IOException e1) {
 				error.setErrorMessage("An error has occurred reading file");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 			catch (HTTPException e2) {
 				error.setErrorMessage("An error has occurred with the connection");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 			catch (Exception e3) {
 				error.setErrorMessage("An error has occurred");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 
 		} else {
@@ -115,15 +121,21 @@ class addQPlugListener implements ActionListener {
 					model.setStatus(0);
 					error.clearErrorMessage();
 				}
+				else {
+					error.setErrorMessage("Error could not turn plug off");
+				}
 			}
 			catch (IOException e1) {
 				error.setErrorMessage("An error has occurred reading file");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 			catch (HTTPException e2) {
 				error.setErrorMessage("An error has occurred with the connection");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 			catch (Exception e3) {
 				error.setErrorMessage("An error has occurred");
+				view.setErrorMessage(error.ErrorMessage);
 			}
 		}
 	}

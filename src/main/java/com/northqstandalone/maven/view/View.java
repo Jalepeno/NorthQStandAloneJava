@@ -38,7 +38,7 @@ public class View extends JFrame {
 	private String disarmString = new String("Disarm");
 	
 	private JLabel motionInfoLabel = new JLabel("MOTION STATUS");
-	private JLabel errorMessage = new JLabel("");
+	private JLabel errorMessage = new JLabel(" ");
 	private JButton lightButton = new JButton("QPlug", lightOffIcon);
 	private JButton motionButton = new JButton("QMotion");
 	private JTextArea motionInfo = new JTextArea(motionString);
@@ -111,5 +111,9 @@ public class View extends JFrame {
 		} else if (status == 0) {
 			motionInfoLabel.setText("MotionSensor: Disarmed");
 		}
+	}
+	
+	public void setErrorMessage(String message) {
+		errorMessage.setText(message);
 	}
 }

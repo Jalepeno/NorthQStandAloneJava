@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.northqstandalone.maven.models.ErrorModel;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.services.TokenService;
+import com.northqstandalone.maven.view.View;
 
 public class TokenController {
 	
@@ -38,6 +39,7 @@ public class TokenController {
 		}
 		catch (Exception e3) {
 			error.setErrorMessage("An error has occurred");
+			
 		}
 		return null;
 	}

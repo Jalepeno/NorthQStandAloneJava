@@ -13,6 +13,6 @@ public class ErrorModel {
 	}
 	
 	public void clearErrorMessage() {
-		ErrorMessage = "";
+		ErrorMessage = " ";
 	}
 }
