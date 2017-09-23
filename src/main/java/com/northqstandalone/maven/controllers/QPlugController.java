@@ -99,6 +99,7 @@ class addQPlugListener implements ActionListener {
 				else {
 					error.setErrorMessage("Error could not turn plug on");
 				}
+				view.setErrorMessage(error.ErrorMessage);
 			} 
 			catch (IOException e1) {
 				error.setErrorMessage("An error has occurred reading file");
@@ -120,10 +121,12 @@ class addQPlugListener implements ActionListener {
 					view.setIcon(0);
 					model.setStatus(0);
 					error.clearErrorMessage();
+					error.setErrorMessage("Error could not turn plug off");
 				}
 				else {
 					error.setErrorMessage("Error could not turn plug off");
 				}
+				view.setErrorMessage(error.ErrorMessage);
 			}
 			catch (IOException e1) {
 				error.setErrorMessage("An error has occurred reading file");
