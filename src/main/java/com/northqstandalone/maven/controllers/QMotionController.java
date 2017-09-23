@@ -2,9 +2,13 @@ package com.northqstandalone.maven.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.xml.ws.http.HTTPException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.northqstandalone.maven.models.ErrorModel;
 import com.northqstandalone.maven.models.QMotionModel;
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.services.QMotionService;
@@ -18,6 +22,7 @@ public class QMotionController {
 	private QMotionService service;
 	private String token;
 	private boolean qMotionStatus;
+	private ErrorModel error;
 
 	@Autowired
 	public void setQMotionService(QMotionService service) {
@@ -28,6 +33,11 @@ public class QMotionController {
 	public void setQMotionModel(QMotionModel model) {
 		this.model = model;
 	}
+	
+	@Autowired
+	public void setErrorModel(ErrorModel error) {
+		this.error = error;
+	}
 
 	public void setView(View view, String token, boolean status) {
 		this.view = view;
@@ -37,7 +47,7 @@ public class QMotionController {
 		setQMotionStatus(status);
 
 		// Enable event listener
-		this.view.addQMotionListener(new addQMotionListener(service, model, view));
+		this.view.addQMotionListener(new addQMotionListener(service, model, view, error));
 	}
 
 	private void setQMotionStatus(boolean status) {
@@ -60,25 +70,53 @@ public class QMotionController {
 		private QMotionService service;
 		private QMotionModel model;
 		private View view;
+		private ErrorModel error;
 
-		public addQMotionListener(QMotionService service, QMotionModel model, View view) {
+		public addQMotionListener(QMotionService service, QMotionModel model, View view, ErrorModel error) {
 			this.service = service;
 			this.model = model;
 			this.view = view;
+			this.error = error;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			if (model.isArmed() == true) {
-				service.disarmMotion(token);
-				model.setArmed(false);
-				view.setMotionButtonText(1);
+				try {
+					service.disarmMotion(token);
+					model.setArmed(false);
+					view.setMotionButtonText(1);
+					error.clearErrorMessage();
+				}
+				catch (IOException e1) {
+					error.setErrorMessage("An error has occurred reading file");
+				}
+				catch (HTTPException e2) {
+					error.setErrorMessage("An error has occurred with the connection");
+				}
+				catch (Exception e3) {
+					error.setErrorMessage("An error has occurred");
+				}
+				
 
-			} else if (model.isArmed() == false) {
-				service.armMotion(token);
-				model.setArmed(true);
-				view.setMotionButtonText(0);
+			} 
+			else if (model.isArmed() == false) {
+				try {
+					service.armMotion(token);
+					model.setArmed(true);
+					view.setMotionButtonText(0);
+					error.clearErrorMessage();
+				}
+				catch (IOException e1) {
+					error.setErrorMessage("An error has occurred reading file");
+				}
+				catch (HTTPException e2) {
+					error.setErrorMessage("An error has occurred with the connection");
+				}
+				catch (Exception e3) {
+					error.setErrorMessage("An error has occurred");
+				}	
 			}
 		}
 	}

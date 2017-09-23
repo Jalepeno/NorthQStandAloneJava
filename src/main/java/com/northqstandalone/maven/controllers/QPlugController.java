@@ -4,8 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.xml.ws.http.HTTPException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.northqstandalone.maven.models.ErrorModel;
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
@@ -13,6 +16,7 @@ import com.northqstandalone.maven.view.View;
 public class QPlugController {
 
 	private QPlugModel model;
+	private ErrorModel error;
 	private View view;
 	private QPlugService service;
 	private String token;
@@ -28,6 +32,11 @@ public class QPlugController {
 		this.model = model;
 	}
 
+	@Autowired
+	public void setErrorModel(ErrorModel error) {
+		this.error = error;
+	}
+
 	public void setView(View view, String token, boolean status) {
 		this.view = view;
 		this.token = token;
@@ -36,7 +45,7 @@ public class QPlugController {
 		setQPlugStatus(status);
 
 		// Enable event listener
-		this.view.addQPlugListener(new addQPlugListener(service, model, view));
+		this.view.addQPlugListener(new addQPlugListener(service, model, view, error));
 	}
 
 	private void setQPlugStatus(boolean status) {
@@ -65,11 +74,13 @@ class addQPlugListener implements ActionListener {
 	private QPlugService service;
 	private QPlugModel model;
 	private View view;
+	private ErrorModel error;
 
-	public addQPlugListener(QPlugService service, QPlugModel model, View view) {
+	public addQPlugListener(QPlugService service, QPlugModel model, View view, ErrorModel error) {
 		this.service = service;
 		this.model = model;
 		this.view = view;
+		this.error = error;
 	}
 
 	@Override
@@ -83,10 +94,17 @@ class addQPlugListener implements ActionListener {
 				if (status) {
 					view.setIcon(1);
 					model.setStatus(1);
+					error.clearErrorMessage();
 				}
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			} 
+			catch (IOException e1) {
+				error.setErrorMessage("An error has occurred reading file");
+			}
+			catch (HTTPException e2) {
+				error.setErrorMessage("An error has occurred with the connection");
+			}
+			catch (Exception e3) {
+				error.setErrorMessage("An error has occurred");
 			}
 
 		} else {
@@ -95,10 +113,17 @@ class addQPlugListener implements ActionListener {
 				if (status) {
 					view.setIcon(0);
 					model.setStatus(0);
+					error.clearErrorMessage();
 				}
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			}
+			catch (IOException e1) {
+				error.setErrorMessage("An error has occurred reading file");
+			}
+			catch (HTTPException e2) {
+				error.setErrorMessage("An error has occurred with the connection");
+			}
+			catch (Exception e3) {
+				error.setErrorMessage("An error has occurred");
 			}
 		}
 	}

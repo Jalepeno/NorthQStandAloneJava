@@ -1,6 +1,7 @@
 package com.northqstandalone.maven.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -37,6 +38,7 @@ public class View extends JFrame {
 	private String disarmString = new String("Disarm");
 	
 	private JLabel motionInfoLabel = new JLabel("MOTION STATUS");
+	private JLabel errorMessage = new JLabel("");
 	private JButton lightButton = new JButton("QPlug", lightOffIcon);
 	private JButton motionButton = new JButton("QMotion");
 	private JTextArea motionInfo = new JTextArea(motionString);
@@ -60,6 +62,7 @@ public class View extends JFrame {
 		motionInfo.setOpaque(false);
 
 		mainPanel.add(lightButton, BorderLayout.EAST);
+		mainPanel.add(errorMessage, BorderLayout.BEFORE_FIRST_LINE);
 		mainPanel.add(motionInfoPanel, BorderLayout.WEST);
 		mainPanel.add(combineCheckBox, BorderLayout.SOUTH);
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -67,7 +70,9 @@ public class View extends JFrame {
 
 		lightButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		lightButton.setVerticalTextPosition(SwingConstants.BOTTOM);
-
+		
+		errorMessage.setForeground(Color.red);
+		
 		// Added method so UI starts in middle of the screen
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);

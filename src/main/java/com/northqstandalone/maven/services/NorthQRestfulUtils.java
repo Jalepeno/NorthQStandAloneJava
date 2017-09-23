@@ -14,6 +14,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.ws.http.HTTPException;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +24,7 @@ public class NorthQRestfulUtils {
 	// Requires: A URL target for a post http(s) service and a Form object
 	// containing all parameters
 	// Returns: A JSON string containing the json response
-	public Response getHttpPostResponse(String target, Form parameters) {
+	public Response getHttpPostResponse(String target, Form parameters) throws IOException, HTTPException, Exception {
 		// Build the web target
 		Client client = ClientBuilder.newBuilder().build();
 		WebTarget webResource = client.target(target);
@@ -37,7 +38,7 @@ public class NorthQRestfulUtils {
 	// Requires: A URL target for a post http(s) service and a Form object
 	// containing all parameters
 	// Returns: A JSON string containing the json response
-	public Response getHttpGetResponse(String target) {
+	public Response getHttpGetResponse(String target) throws IOException, HTTPException, Exception {
 		// Build the web target
 		Client client = ClientBuilder.newBuilder().build();
 		WebTarget webResource = client.target(target);
@@ -50,7 +51,7 @@ public class NorthQRestfulUtils {
 	// Requires:
 	// Returns: a string representation of JSON object returned by northQ restful
 	// services
-	public String getTokenJSON() throws IOException {
+	public String getTokenJSON() throws IOException, HTTPException, Exception {
 		Form form = new Form();
 		ArrayList<String> info = logInInfo();
 		// System.out.println(info.get(0));
@@ -85,7 +86,7 @@ public class NorthQRestfulUtils {
 
 	// Requires:
 	// Returns: An http response
-	public String getTokenString() throws IOException {
+	public String getTokenString() throws IOException, HTTPException, Exception {
 		return getJsonMap(getTokenJSON()).get("token").toString();
 	}
 
@@ -97,7 +98,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: gatewayId, userId and a token (all strings)
 	// Returns: A http response
-	public Response getGatawayStatus(String gatewayId, String userId, String token) {
+	public Response getGatawayStatus(String gatewayId, String userId, String token) throws IOException, HTTPException, Exception {
 		// https://homemanager.tv/main/getGatewayStatus?gateway={{gateway_id}}&user={{user_id}}&token={{token}}
 		String URL = "https://homemanager.tv/main/getGatewayStatus?gateway=" + gatewayId + "&user=" + userId + "&token="
 				+ token;
@@ -108,7 +109,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: gatewayId, userId and a token (all strings)
 	// Returns: A http response
-	public String getGatewayStatusJSON(String gatewayId, String userId, String token) {
+	public String getGatewayStatusJSON(String gatewayId, String userId, String token) throws IOException, HTTPException, Exception {
 		// https://homemanager.tv/main/getGatewayStatus?gateway={{gateway_id}}&user={{user_id}}&token={{token}}
 		String URL = "https://homemanager.tv/main/getGatewayStatus?gateway=" + gatewayId + "&user=" + userId + "&token="
 				+ token;
@@ -119,13 +120,13 @@ public class NorthQRestfulUtils {
 			return json;
 		} else {
 			response.close();
-			throw new NullPointerException("status not recieved http error code: " + response.getStatus());
+			return "";
 		}
 	}
 
 	// Requires: a userId and a token both strings
 	// Returns: A http response
-	public Response getCurrentUserHouses(String userId, String token) {
+	public Response getCurrentUserHouses(String userId, String token) throws IOException, HTTPException, Exception {
 		// https://homemanager.tv/main/getCurrentUserHouses?user={{user_id}}&token={{token}}
 		String url = "https://homemanager.tv/main/getCurrentUserHouses?user=" + userId + "&token=" + token;
 		return getHttpGetResponse(url);
@@ -133,7 +134,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: a houseId, a userId and a token (all strings)
 	// Returns: An http response
-	public Response getHouseGateways(String houseId, String userId, String token) {
+	public Response getHouseGateways(String houseId, String userId, String token) throws IOException, HTTPException, Exception {
 		// https://homemanager.tv/main/getHouseGateways?house_id={{house_id}}&user={{user_id}}&token={{token}}
 		String url = "https://homemanager.tv/main/getHouseGateways?house_id=" + houseId + "&user=" + userId + "&token="
 				+ token;
@@ -142,7 +143,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: string representations of userId,token, houseId,page
 	// Returns: An http response
-	public Response getNotifications(String userId, String token, String houseId, String page) {
+	public Response getNotifications(String userId, String token, String houseId, String page) throws IOException, HTTPException, Exception {
 		String url = "https://homemanager.tv/main/getUserNotifications?user=" + userId + "&token=" + token
 				+ "&house_id=" + houseId + "&page=" + page;
 		return getHttpGetResponse(url);
