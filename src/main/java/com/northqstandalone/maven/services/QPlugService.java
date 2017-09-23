@@ -3,26 +3,23 @@ package com.northqstandalone.maven.services;
 import java.io.IOException;
 
 import javax.ws.rs.core.Form;
+import javax.xml.ws.http.HTTPException;
 
 public class QPlugService {
 
     NorthQRestfulUtils nq = new NorthQRestfulUtils();
 
-    public boolean turnOnPlug() throws IOException {
+    public boolean turnOnPlug() throws IOException, HTTPException, Exception {
         String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
         return updateQplugStatus(1, token);
     }
 
-    public boolean turnOffPlug() throws IOException {
+    public boolean turnOffPlug() throws IOException, HTTPException, Exception {
         String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
         return updateQplugStatus(0, token);
     }
 
-    public void getStatus() {
-        // TODO: Optional, call to get status of QPlug
-    }
-
-    public boolean updateQplugStatus(int status, String token) {
+    public boolean updateQplugStatus(int status, String token) throws IOException, HTTPException, Exception {
         Form form = new Form();
         form.param("user", "2166");
         form.param("token", token);
