@@ -121,7 +121,6 @@ class addQPlugListener implements ActionListener {
 					view.setIcon(0);
 					model.setStatus(0);
 					error.clearErrorMessage();
-					error.setErrorMessage("Error could not turn plug off");
 				}
 				else {
 					error.setErrorMessage("Error could not turn plug off");

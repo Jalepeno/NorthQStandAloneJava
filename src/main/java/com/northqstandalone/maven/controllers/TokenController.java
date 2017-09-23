@@ -39,7 +39,6 @@ public class TokenController {
 		}
 		catch (Exception e3) {
 			error.setErrorMessage("An error has occurred");
-			
 		}
 		return null;
 	}

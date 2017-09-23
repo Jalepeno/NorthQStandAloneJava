@@ -61,7 +61,6 @@ public class QMotionController {
 			model.setArmed(false);
 			view.setMotionButtonText(1);
 		}
-
 	}
 
 	// Action listener to receive event from view
@@ -91,15 +90,16 @@ public class QMotionController {
 				}
 				catch (IOException e1) {
 					error.setErrorMessage("An error has occurred reading file");
+					view.setErrorMessage(error.ErrorMessage);
 				}
 				catch (HTTPException e2) {
 					error.setErrorMessage("An error has occurred with the connection");
+					view.setErrorMessage(error.ErrorMessage);
 				}
 				catch (Exception e3) {
 					error.setErrorMessage("An error has occurred");
+					view.setErrorMessage(error.ErrorMessage);
 				}
-				
-
 			} 
 			else if (model.isArmed() == false) {
 				try {
@@ -110,12 +110,15 @@ public class QMotionController {
 				}
 				catch (IOException e1) {
 					error.setErrorMessage("An error has occurred reading file");
+					view.setErrorMessage(error.ErrorMessage);
 				}
 				catch (HTTPException e2) {
 					error.setErrorMessage("An error has occurred with the connection");
+					view.setErrorMessage(error.ErrorMessage);
 				}
 				catch (Exception e3) {
 					error.setErrorMessage("An error has occurred");
+					view.setErrorMessage(error.ErrorMessage);
 				}	
 			}
 		}
