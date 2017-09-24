@@ -41,8 +41,9 @@ public class TokenServiceTest extends TestCase {
 
 		try {
 			token = _service.get("dtu7", "dtu7");
-		} catch (Exception e) {
-			// Do nothing
+			fail();
+		} catch (Exception expected) {
+			
 		}
 
 		// Assert that token is null
