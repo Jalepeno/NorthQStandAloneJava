@@ -1,5 +1,7 @@
 package com.northqstandalone.maven.NorthQ;
 
+import com.northqstandalone.maven.services.NorthQRestfulUtils;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -19,6 +21,9 @@ public class AppTest
     {
         super( testName );
     }
+    
+
+
 
     /**
      * @return the suite of tests being tested
