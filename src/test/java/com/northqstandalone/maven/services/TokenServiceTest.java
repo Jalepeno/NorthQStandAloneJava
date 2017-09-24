@@ -1,72 +1,52 @@
 package com.northqstandalone.maven.services;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.xml.ws.http.HTTPException;
+import org.junit.Before;
+import org.junit.Test;
 
-import com.northqstandalone.maven.NorthQ.AppTest;
-
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class TokenServiceTest extends TestCase {
 
-	private NorthQRestfulUtils utils;
-	private TokenService service;
+	private NorthQRestfulUtils _utils;
+	private TokenService _service;
 	private CredentialsService _credentialsService;
-	
+
 	private ArrayList<String> credentials;
 
-	public TokenServiceTest() {
-		utils = new NorthQRestfulUtils();
-		service = new TokenService();
+	@Before
+	public void setUp() throws Exception {
+		_utils = new NorthQRestfulUtils();
+		_service = new TokenService();
 		_credentialsService = new CredentialsService();
 		
-		service.setNorthQService(utils);
-		
+		_service.setNorthQService(_utils);
 		credentials = _credentialsService.getUserCredentials();
 	}
-	
-	public void testGetToken() {
-		String token = null;
 
-		try {
-			token = service.get(credentials.get(0), credentials.get(1));
-			assertNotNull(token);
-		} catch (HTTPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@Test
+	public void testGetTokenCorrectUser() throws Exception {
+
+		String token = _service.get(credentials.get(0), credentials.get(1));
 
 		// Assert that token is not null
 		assertNotNull(token);
 	}
 
+	@Test
 	public void testGetTokenWrongUser() {
-
+		
 		String token = null;
-
+		
 		try {
-			token = service.get("dtu7", "dtu7");
-			System.out.println("Token is: " + token);
-			assertNotNull(token);
-		} catch (HTTPException e) {
-			// Do nothing
-		} catch (IOException e) {
-			// Do nothing
+			token = _service.get("dtu7", "dtu7");
+			System.out.println(token);
 		} catch (Exception e) {
 			// Do nothing
 		}
 
-		// Assert that token is not null
+		// Assert that token is null
 		assertNull(token);
 	}
 }
