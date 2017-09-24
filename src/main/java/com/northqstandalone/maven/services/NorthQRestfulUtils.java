@@ -62,8 +62,9 @@ public class NorthQRestfulUtils {
 			response.close();
 			return json;
 		} else {
+			String json = response.readEntity(String.class);
 			response.close();
-			throw new NullPointerException("token not recieved http error code: " + response.getStatus());
+			return json;
 		}
 	}
 
@@ -134,7 +135,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: a JSON formatted string
 	// Returns: A map consisting of objects translated from JSON
-	public Map<String, Object> getJsonMap(String jsonString) {
+	public Map<String, Object> getJsonMap(String jsonString) throws IOException, HTTPException, Exception {
 		return new Gson().fromJson(jsonString, new TypeToken<HashMap<String, Object>>() {
 		}.getType());
 	}

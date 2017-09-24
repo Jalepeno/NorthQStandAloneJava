@@ -13,6 +13,7 @@
 	</bean>
 	<bean id="qMotionService" class="com.northqstandalone.maven.services.QMotionService" />
 	<bean id="northQService" class="com.northqstandalone.maven.services.NorthQRestfulUtils" />
+	<bean id="credentialsService" class="com.northqstandalone.maven.services.CredentialsService" />
 	<bean id="tokenService" class="com.northqstandalone.maven.services.TokenService">
 		<property name="northQService" ref="northQService" />
 	</bean>
@@ -41,6 +42,7 @@
 
 	<bean id="tokenController" class="com.northqstandalone.maven.controllers.TokenController">
 		<property name="tokenService" ref="tokenService" />
+		<property name="credentialsService" ref="credentialsService" />
 		<property name="errorModel" ref="errorModel" />
 	</bean>
 
