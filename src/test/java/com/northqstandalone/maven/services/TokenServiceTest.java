@@ -1,5 +1,9 @@
 package com.northqstandalone.maven.services;
 
+import java.io.IOException;
+
+import javax.xml.ws.http.HTTPException;
+
 import com.northqstandalone.maven.NorthQ.AppTest;
 
 import junit.framework.Test;
@@ -8,29 +12,35 @@ import junit.framework.TestSuite;
 
 public class TokenServiceTest extends TestCase {
 	
-	/**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public TokenServiceTest( String TokenServiceTest )
-    {
-        super( TokenServiceTest );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( TokenServiceTest.class );
+	private NorthQRestfulUtils utils; 
+	private TokenService service;
+	
+    public TokenServiceTest() {
+    	utils = new NorthQRestfulUtils();
+    	service = new TokenService();
+    	
+    	service.setNorthQService(utils);
     }
     
-    /**
-     * Rigourous Test :-)
-     */
-    public void testTokenService()
+    public void testGetToken()
     {
-        assertTrue( true );
+    	String token = null;
+    	
+    	try {
+			token = service.get();
+			assertNotNull(token);
+		} catch (HTTPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	// Assert that token is not null
+    	assertNotNull(token);
     }
 }
