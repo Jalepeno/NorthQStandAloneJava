@@ -42,8 +42,8 @@
 
 	<bean id="tokenController" class="com.northqstandalone.maven.controllers.TokenController">
 		<property name="tokenService" ref="tokenService" />
-		<property name="credentialsService" ref="credentialsService" />
 		<property name="errorModel" ref="errorModel" />
+		<property name="credentialsService" ref="credentialsService" />
 	</bean>
 
 </beans>

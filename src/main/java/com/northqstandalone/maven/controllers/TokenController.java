@@ -14,15 +14,10 @@ import com.northqstandalone.maven.services.TokenService;
 public class TokenController {
 	
 	private TokenService service;
-	private CredentialsService _credentialsService;
+	private CredentialsService credentialsService;
 	private ErrorModel error;
 	
 	private ArrayList<String> credentials;
-	
-	public TokenController() {
-		// Get credentials
-		credentials = _credentialsService.getUserCredentials();
-	}
 	
 	@Autowired
 	public void setTokenService(TokenService service) {
@@ -36,7 +31,9 @@ public class TokenController {
 	
 	@Autowired
 	public void setCredentialsService(CredentialsService credentialsService) {
-		this._credentialsService = credentialsService;
+		this.credentialsService = credentialsService;
+		
+		credentials = credentialsService.getUserCredentials();
 	}
 
 	public String getToken() {
