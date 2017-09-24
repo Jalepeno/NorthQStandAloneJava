@@ -20,7 +20,7 @@ public class TokenServiceTest extends TestCase {
 		_utils = new NorthQRestfulUtils();
 		_service = new TokenService();
 		_credentialsService = new CredentialsService();
-		
+
 		_service.setNorthQService(_utils);
 		credentials = _credentialsService.getUserCredentials();
 	}
@@ -36,12 +36,11 @@ public class TokenServiceTest extends TestCase {
 
 	@Test
 	public void testGetTokenWrongUser() {
-		
+
 		String token = null;
-		
+
 		try {
 			token = _service.get("dtu7", "dtu7");
-			System.out.println(token);
 		} catch (Exception e) {
 			// Do nothing
 		}
