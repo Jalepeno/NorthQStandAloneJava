@@ -51,14 +51,10 @@ public class NorthQRestfulUtils {
 	// Requires:
 	// Returns: a string representation of JSON object returned by northQ restful
 	// services
-	public String getTokenJSON() throws IOException, HTTPException, Exception {
+	public String getTokenJSON(String userId, String password) throws IOException, HTTPException, Exception {
 		Form form = new Form();
-		ArrayList<String> info = logInInfo();
-		// System.out.println(info.get(0));
-		// System.out.println(info.get(1));
-
-		form.param("username", info.get(0));
-		form.param("password", info.get(1));
+		form.param("username", userId);
+		form.param("password", password);
 		Response response = getHttpPostResponse("https://homemanager.tv/token/new.json", form);
 		// Test success of request
 		if (response.getStatus() == 200) {
@@ -69,25 +65,12 @@ public class NorthQRestfulUtils {
 			response.close();
 			throw new NullPointerException("token not recieved http error code: " + response.getStatus());
 		}
-
-	}
-
-	public ArrayList<String> logInInfo() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("C:\\file.txt"));
-		String[] info = null;
-		ArrayList<String> list = new ArrayList<String>();
-		String line = br.readLine();
-		list.add(line);
-		line = br.readLine();
-		list.add(line);
-		br.close();
-		return list;
 	}
 
 	// Requires:
 	// Returns: An http response
-	public String getTokenString() throws IOException, HTTPException, Exception {
-		return getJsonMap(getTokenJSON()).get("token").toString();
+	public String getTokenString(String userId, String password) throws IOException, HTTPException, Exception {
+		return getJsonMap(getTokenJSON(userId, password)).get("token").toString();
 	}
 
 	// Requires:
