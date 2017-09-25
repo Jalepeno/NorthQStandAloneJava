@@ -8,6 +8,7 @@ import javax.xml.ws.http.HTTPException;
 
 public class QMotionService {
 
+
 	private NorthQRestfulUtils utils;
 
 	public void setNorthQService(NorthQRestfulUtils utils) {

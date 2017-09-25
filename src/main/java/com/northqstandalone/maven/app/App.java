@@ -31,8 +31,9 @@ public class App {
 		StatusController statusController = (StatusController) factory.getBean("statusController");
 		
 		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
-		qPlugController.setView(view, token, statusController.getQPlugStatus(token));
-		
+
+		qPlugController.setView(view, token, false); // statusController.getQPlugStatus(token)
+
 		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
 		qMotionController.setView(view, token, statusController.getQMotionStatus(token));
 
