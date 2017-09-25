@@ -15,7 +15,6 @@ import com.northqstandalone.maven.models.BinarySensorModel;
 import com.northqstandalone.maven.models.QMotionModel;
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.models.getGatewayStatusModel;
-import com.northqstandalone.maven.services.IQPlugService;
 
 import com.northqstandalone.maven.models.ErrorModel;
 
