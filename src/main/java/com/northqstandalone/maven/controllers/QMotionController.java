@@ -18,7 +18,7 @@ import com.northqstandalone.maven.services.QMotionService;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
 
-public class QMotionController implements IQMotionListener{
+public class QMotionController implements IQMotionListener {
 
 	private QMotionModel model;
 	private View view;
@@ -36,7 +36,7 @@ public class QMotionController implements IQMotionListener{
 	public void setQMotionModel(QMotionModel model) {
 		this.model = model;
 	}
-	
+
 	@Autowired
 	public void setErrorModel(ErrorModel error) {
 		this.error = error;
@@ -78,7 +78,13 @@ public class QMotionController implements IQMotionListener{
 		
 		
 	}
-
+  
+  public void onMotionModelUpdate(QMotionModel motionModel) {
+		// TODO Auto-generated method stub
+		this.model = motionModel;
+	}
+  
+  
 
 	// Action listener to receive event from view
 	class addQMotionListener implements ActionListener {
@@ -104,45 +110,35 @@ public class QMotionController implements IQMotionListener{
 					model.setArmed(false);
 					view.setMotionButtonText(1);
 					error.clearErrorMessage();
-				}
-				catch (IOException e1) {
+				} catch (IOException e1) {
 					error.setErrorMessage("An error has occurred reading file");
 					view.setErrorMessage(error.ErrorMessage);
-				}
-				catch (HTTPException e2) {
+				} catch (HTTPException e2) {
 					error.setErrorMessage("An error has occurred with the connection");
 					view.setErrorMessage(error.ErrorMessage);
-				}
-				catch (Exception e3) {
+				} catch (Exception e3) {
 					error.setErrorMessage("An error has occurred");
 					view.setErrorMessage(error.ErrorMessage);
 				}
-			} 
-			else if (model.isArmed() == false) {
+			} else if (model.isArmed() == false) {
 				try {
 					service.armMotion(token);
 					model.setArmed(true);
 					view.setMotionButtonText(0);
 					error.clearErrorMessage();
-				}
-				catch (IOException e1) {
+				} catch (IOException e1) {
 					error.setErrorMessage("An error has occurred reading file");
 					view.setErrorMessage(error.ErrorMessage);
-				}
-				catch (HTTPException e2) {
+				} catch (HTTPException e2) {
 					error.setErrorMessage("An error has occurred with the connection");
 					view.setErrorMessage(error.ErrorMessage);
-				}
-				catch (Exception e3) {
+				} catch (Exception e3) {
 					error.setErrorMessage("An error has occurred");
 					view.setErrorMessage(error.ErrorMessage);
-				}	
+				}
 			}
 		}
-
 	}
-
-    
 }
 
 
