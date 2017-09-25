@@ -1,6 +1,9 @@
 package com.northqstandalone.maven.services;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +67,45 @@ public class NorthQRestfulUtils {
 			return json;
 		}
 	}
+	
+	// Requires:
+		// Returns: a string representation of JSON object returned by northQ restful
+		// services
+		public String getTokenJSON() throws HTTPException, Exception {
+			Form form = new Form();
+			ArrayList<String> info = logInInfo();
+			// System.out.println(info.get(0));
+			// System.out.println(info.get(1));
+
+			form.param("username", info.get(0));
+			form.param("password", info.get(1));
+			Response response = getHttpPostResponse("https://homemanager.tv/token/new.json", form);
+			// Test success of request
+			if (response.getStatus() == 200) {
+				String json = response.readEntity(String.class);
+				response.close();
+				return json;
+			} else {
+				response.close();
+				throw new NullPointerException("token not recieved http error code: " + response.getStatus());
+			}
+
+		}
+		
+		public ArrayList<String> logInInfo() throws IOException {
+			BufferedReader br = new BufferedReader(new FileReader("C:\\file.txt"));
+			String[] info = null;
+			ArrayList<String> list = new ArrayList<String>();
+			String line = br.readLine();
+			list.add(line);
+			line = br.readLine();
+			list.add(line);
+			br.close();
+			return list;
+		}
+	
+	
+	
 
 	// Requires:
 	// Returns: An http response

@@ -7,11 +7,21 @@ import javax.xml.ws.http.HTTPException;
 
 public class QPlugService {
 
-    private NorthQRestfulUtils utils;
+    private NorthQRestfulUtils nq;
     
     public void setNorthQService(NorthQRestfulUtils utils) {
-		this.utils = utils;
+		this.nq = utils;
 	}
+    
+    public boolean turnOnPlug() throws HTTPException, Exception {
+        String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
+        return updateQplugStatus(1, token);
+    }
+
+    public boolean turnOffPlug() throws HTTPException, Exception {
+        String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
+        return updateQplugStatus(0, token);
+    }
     
     public boolean updateQplugStatus(int status, String token) throws IOException, HTTPException, Exception {
         Form form = new Form();
@@ -26,7 +36,7 @@ public class QPlugService {
         }
         form.param("pos", stat);
 
-        String response = utils.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class);
-        return utils.getJsonMap(response).get("success").toString().equals("1.0");
+        String response = nq.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class);
+        return nq.getJsonMap(response).get("success").toString().equals("1.0");
     }
 }

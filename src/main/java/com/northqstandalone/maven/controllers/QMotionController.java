@@ -79,10 +79,6 @@ public class QMotionController implements IQMotionListener {
 		
 	}
   
-  public void onMotionModelUpdate(QMotionModel motionModel) {
-		// TODO Auto-generated method stub
-		this.model = motionModel;
-	}
   
   
 
