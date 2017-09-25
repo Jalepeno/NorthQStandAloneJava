@@ -18,6 +18,8 @@ import com.northqstandalone.maven.services.QMotionService;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
 
+import sun.security.ec.ECDHKeyAgreement;
+
 public class QMotionController implements IQMotionListener {
 
 	private QMotionModel model;
@@ -99,7 +101,6 @@ public class QMotionController implements IQMotionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
 			if (model.isArmed() == true) {
 				try {
 					service.disarmMotion(token);
@@ -123,12 +124,15 @@ public class QMotionController implements IQMotionListener {
 					view.setMotionButtonText(0);
 					error.clearErrorMessage();
 				} catch (IOException e1) {
+					e1.printStackTrace();
 					error.setErrorMessage("An error has occurred reading file");
 					view.setErrorMessage(error.ErrorMessage);
 				} catch (HTTPException e2) {
+					e2.printStackTrace();
 					error.setErrorMessage("An error has occurred with the connection");
 					view.setErrorMessage(error.ErrorMessage);
 				} catch (Exception e3) {
+					e3.printStackTrace();
 					error.setErrorMessage("An error has occurred");
 					view.setErrorMessage(error.ErrorMessage);
 				}

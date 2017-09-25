@@ -18,6 +18,8 @@ public class QMotionService {
 	// Requires: requires a token
 	// Returns: returns the http response
 	public Response armMotion(String token) throws IOException, HTTPException, Exception {
+		utils = new NorthQRestfulUtils();
+		System.out.println(utils == null);
 		Form form = new Form();
 		form.param("user", "2166");
 		form.param("token", token);
@@ -30,6 +32,7 @@ public class QMotionService {
 	// Requires: requires a token
 	// Returns: returns the http response
 	public Response disarmMotion(String token) throws IOException, HTTPException, Exception {
+		utils = new NorthQRestfulUtils();
 		Form form = new Form();
 		form.param("user", "2166");
 		form.param("token", token);
