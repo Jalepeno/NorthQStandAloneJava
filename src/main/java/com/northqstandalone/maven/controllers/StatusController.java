@@ -22,7 +22,6 @@ import com.northqstandalone.maven.models.UserNotificationModel;
 import com.northqstandalone.maven.models.getGatewayStatusModel;
 
 import com.northqstandalone.maven.models.getUserNotificationsModel;
-import com.northqstandalone.maven.services.IQPlugService;
 
 
 import com.northqstandalone.maven.models.ErrorModel;
@@ -213,9 +212,6 @@ public class StatusController {
 	        }}, 0, 5, TimeUnit.SECONDS);
 	    }
 	
-	private void getDataFromDatabase() {
-        System.out.println("getting data...");
-    }
 
     public void shutdown() {
         System.out.println("shutdown...");
