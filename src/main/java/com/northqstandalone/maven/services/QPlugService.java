@@ -7,18 +7,12 @@ import javax.xml.ws.http.HTTPException;
 
 public class QPlugService {
 
-    NorthQRestfulUtils nq = new NorthQRestfulUtils();
-
-    public boolean turnOnPlug() throws IOException, HTTPException, Exception {
-        String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
-        return updateQplugStatus(1, token);
-    }
-
-    public boolean turnOffPlug() throws IOException, HTTPException, Exception {
-        String token = nq.getJsonMap(nq.getTokenJSON()).get("token").toString();
-        return updateQplugStatus(0, token);
-    }
-
+    private NorthQRestfulUtils utils;
+    
+    public void setNorthQService(NorthQRestfulUtils utils) {
+		this.utils = utils;
+	}
+    
     public boolean updateQplugStatus(int status, String token) throws IOException, HTTPException, Exception {
         Form form = new Form();
         form.param("user", "2166");
@@ -32,7 +26,7 @@ public class QPlugService {
         }
         form.param("pos", stat);
 
-        String response = nq.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class);
-        return nq.getJsonMap(response).get("success").toString().equals("1.0");
+        String response = utils.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class);
+        return utils.getJsonMap(response).get("success").toString().equals("1.0");
     }
 }

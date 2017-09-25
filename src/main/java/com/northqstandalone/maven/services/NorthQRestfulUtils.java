@@ -1,9 +1,6 @@
 package com.northqstandalone.maven.services;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,14 +48,10 @@ public class NorthQRestfulUtils {
 	// Requires:
 	// Returns: a string representation of JSON object returned by northQ restful
 	// services
-	public String getTokenJSON() throws IOException, HTTPException, Exception {
+	public String getTokenJSON(String userId, String password) throws IOException, HTTPException, Exception {
 		Form form = new Form();
-		ArrayList<String> info = logInInfo();
-		// System.out.println(info.get(0));
-		// System.out.println(info.get(1));
-
-		form.param("username", info.get(0));
-		form.param("password", info.get(1));
+		form.param("username", userId);
+		form.param("password", password);
 		Response response = getHttpPostResponse("https://homemanager.tv/token/new.json", form);
 		// Test success of request
 		if (response.getStatus() == 200) {
@@ -66,28 +59,16 @@ public class NorthQRestfulUtils {
 			response.close();
 			return json;
 		} else {
+			String json = response.readEntity(String.class);
 			response.close();
-			throw new NullPointerException("token not recieved http error code: " + response.getStatus());
+			return json;
 		}
-
-	}
-
-	public ArrayList<String> logInInfo() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("C:\\file.txt"));
-		String[] info = null;
-		ArrayList<String> list = new ArrayList<String>();
-		String line = br.readLine();
-		list.add(line);
-		line = br.readLine();
-		list.add(line);
-		br.close();
-		return list;
 	}
 
 	// Requires:
 	// Returns: An http response
-	public String getTokenString() throws IOException, HTTPException, Exception {
-		return getJsonMap(getTokenJSON()).get("token").toString();
+	public String getTokenString(String userId, String password) throws IOException, HTTPException, Exception {
+		return getJsonMap(getTokenJSON(userId, password)).get("token").toString();
 	}
 
 	// Requires:
@@ -151,7 +132,7 @@ public class NorthQRestfulUtils {
 
 	// Requires: a JSON formatted string
 	// Returns: A map consisting of objects translated from JSON
-	public Map<String, Object> getJsonMap(String jsonString) {
+	public Map<String, Object> getJsonMap(String jsonString) throws IOException, HTTPException, Exception {
 		return new Gson().fromJson(jsonString, new TypeToken<HashMap<String, Object>>() {
 		}.getType());
 	}

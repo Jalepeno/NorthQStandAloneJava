@@ -48,7 +48,7 @@ public class QPlugController implements IQPlugListener{
 		setQPlugStatus(status);
 
 		// Enable event listener
-		this.view.addQPlugListener(new addQPlugListener(service, model, view, error));
+		this.view.addQPlugListener(new addQPlugListener(service, model, view, error, token));
 	}
 
 	private void setQPlugStatus(boolean status) {
@@ -87,12 +87,14 @@ class addQPlugListener implements ActionListener {
 	private QPlugModel model;
 	private View view;
 	private ErrorModel error;
+	private String token;
 
-	public addQPlugListener(QPlugService service, QPlugModel model, View view, ErrorModel error) {
+	public addQPlugListener(QPlugService service, QPlugModel model, View view, ErrorModel error, String token) {
 		this.service = service;
 		this.model = model;
 		this.view = view;
 		this.error = error;
+		this.token = token;
 	}
 
 	@Override
@@ -102,7 +104,7 @@ class addQPlugListener implements ActionListener {
 		
 		if (model.getStatus() == 0) {
 			try {
-				status = service.turnOnPlug();
+				status = service.updateQplugStatus(1, token);
 				if (status) {
 					view.setIcon(1);
 					model.setStatus(1);
@@ -125,10 +127,9 @@ class addQPlugListener implements ActionListener {
 				error.setErrorMessage("An error has occurred");
 				view.setErrorMessage(error.ErrorMessage);
 			}
-
 		} else {
 			try {
-				status = service.turnOffPlug();
+				status = service.updateQplugStatus(0, token);
 				if (status) {
 					view.setIcon(0);
 					model.setStatus(0);

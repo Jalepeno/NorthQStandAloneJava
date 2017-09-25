@@ -1,46 +1,52 @@
 package com.northqstandalone.maven.services;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.xml.ws.http.HTTPException;
+import org.junit.Before;
+import org.junit.Test;
 
-import com.northqstandalone.maven.NorthQ.AppTest;
-
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class TokenServiceTest extends TestCase {
-	
-	private NorthQRestfulUtils utils; 
-	private TokenService service;
-	
-    public TokenServiceTest() {
-    	utils = new NorthQRestfulUtils();
-    	service = new TokenService();
-    	
-    	service.setNorthQService(utils);
-    }
-    
-    public void testGetToken()
-    {
-    	String token = null;
-    	
-    	try {
-			token = service.get();
-			assertNotNull(token);
-		} catch (HTTPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+	private NorthQRestfulUtils _utils;
+	private TokenService _service;
+	private CredentialsService _credentialsService;
+
+	private ArrayList<String> credentials;
+
+	@Before
+	public void setUp() throws Exception {
+		_utils = new NorthQRestfulUtils();
+		_service = new TokenService();
+		_credentialsService = new CredentialsService();
+
+		_service.setNorthQService(_utils);
+		credentials = _credentialsService.getUserCredentials();
+	}
+
+	@Test
+	public void testGetTokenCorrectUser() throws Exception {
+
+		String token = _service.get(credentials.get(0), credentials.get(1));
+
+		// Assert that token is not null
+		assertNotNull(token);
+	}
+
+	@Test
+	public void testGetTokenWrongUser() {
+
+		String token = null;
+
+		try {
+			token = _service.get("dtu7", "dtu7");
+			fail();
+		} catch (Exception expected) {
+			
 		}
-    	
-    	// Assert that token is not null
-    	assertNotNull(token);
-    }
+
+		// Assert that token is null
+		assertNull(token);
+	}
 }
