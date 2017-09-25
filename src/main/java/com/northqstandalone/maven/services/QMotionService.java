@@ -52,4 +52,5 @@ public class QMotionService {
         System.out.println(services.getHttpPostResponse("https://homemanager.tv/main/setBinaryValue", form).readEntity(String.class));
 
     }
+    
 }

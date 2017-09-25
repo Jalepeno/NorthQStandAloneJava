@@ -5,13 +5,14 @@ import java.awt.event.ActionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.northqstandalone.maven.controllers.StatusController.IQMotionListener;
 import com.northqstandalone.maven.models.QMotionModel;
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.services.QMotionService;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
 
-public class QMotionController {
+public class QMotionController implements IQMotionListener{
 
     private QMotionModel model;
     private View view;
@@ -64,4 +65,11 @@ public class QMotionController {
         	}
         }
     }
+
+	@Override
+	public void onMotionModelUpdate(QMotionModel motionModel) {
+		// TODO Auto-generated method stub
+		this.model = motionModel;
+		
+	}
 }

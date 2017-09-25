@@ -6,32 +6,43 @@ public class QMotionModel {
 	private float tmp;
 	private float humidity;
 	private float light;
-	BinarySensorModel model;
+	BinarySensorModel binarySensorModel;
 	
 	public QMotionModel() {
 		
 	}
+
 	
-	public QMotionModel(boolean armed, float tmp, float humidity, float light) {
-		this.armed = armed;
-		this.tmp = tmp;
-		this.humidity = humidity;
-		this.light = light;
-	}
 	
 	// --- Getters ---//
 	public float getHumidity() {
+		if(binarySensorModel != null) {
+			return binarySensorModel.sensors.get(2).value;
+		}
 		return humidity;
 	}
 	
 	public float getLight() {
+	if(binarySensorModel != null) {
+		return binarySensorModel.sensors.get(1).value;
+	}
 		return light;
 	}
 	public float getTmp() {
+		if(binarySensorModel != null) {
+			return binarySensorModel.sensors.get(0).value;
+		}
 		return tmp;
 	}
 	public boolean isArmed() {
+		if(binarySensorModel != null) {
+			return binarySensorModel.armed == 1;
+		}
 		return armed;
+	}
+	
+	public BinarySensorModel getBinarySensorModel() {
+		return binarySensorModel;
 	}
 	
 	// --- Setters --- //
@@ -47,6 +58,13 @@ public class QMotionModel {
 	
 	public void setTmp(float tmp) {
 		this.tmp = tmp;
+	}
+	
+	public void setBinarySensorModel(BinarySensorModel binarySensorModel) {
+		this.binarySensorModel = binarySensorModel;
+		//binarySensorModel.print();
+		
+		
 	}
 	
 	

@@ -7,5 +7,10 @@ public class SensorModel {
 	public float value;
 
 
+	public String getStrings() {
+		return "(scale: "+scale+
+				" - type: "+type+
+				" - value: "+value+")";
+	}
 	
 }

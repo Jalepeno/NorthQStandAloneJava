@@ -26,8 +26,27 @@ public class BinarySensorModel {
 		public int room;
 		public int range;
 		public float[] relays;
-	
-
-	         
+		
+		public void print() {
+			System.out.println("type_id: "+type_id+
+					"\nbattery: "+battery+
+					"\npos: "+pos+
+					"\narmed: "+armed+
+					"\nname"+name+
+					"\n"+getSensorValues()
+					);
+			
+		}
+         
+		
+		private String getSensorValues(){
+			String s="{";
+			for(SensorModel sm : sensors) {
+				s += "\n"+sm.getStrings();
+				
+			}
+			s+="}";
+			return s;
+		}
 
 }

@@ -6,11 +6,12 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.northqstandalone.maven.controllers.StatusController.IQPlugListener;
 import com.northqstandalone.maven.models.QPlugModel;
 import com.northqstandalone.maven.services.QPlugService;
 import com.northqstandalone.maven.view.View;
 
-public class QPlugController {
+public class QPlugController implements IQPlugListener{
 
 	private QPlugModel model;
 	private View view;
@@ -55,6 +56,15 @@ public class QPlugController {
 
 	public int getStatus() {
 		return model.getStatus();
+	}
+
+	@Override
+	public void onPlugModelUpdate(QPlugModel plugModel) {
+		// TODO Auto-generated method stub
+		this.model = plugModel;
+		setQPlugStatus(model.getStatus() != 0);
+		
+		
 	}
 
 }
