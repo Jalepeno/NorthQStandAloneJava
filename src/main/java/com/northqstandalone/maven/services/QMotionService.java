@@ -1,7 +1,10 @@
 package com.northqstandalone.maven.services;
 
+import java.io.IOException;
+
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.Response;
+import javax.xml.ws.http.HTTPException;
 
 public class QMotionService {
 
@@ -9,7 +12,7 @@ public class QMotionService {
 
     // Requires: requires a token
     // Returns: returns the http response
-    public Response armMotion(String token) {
+    public Response armMotion(String token) throws IOException, HTTPException, Exception {
         Form form = new Form();
         form.param("user", "2166");
         form.param("token", token);
@@ -21,7 +24,7 @@ public class QMotionService {
 
     // Requires: requires a token
     // Returns: returns the http response
-    public Response disarmMotion(String token) {
+    public Response disarmMotion(String token) throws IOException, HTTPException, Exception {
         Form form = new Form();
         form.param("user", "2166");
         form.param("token", token);
@@ -32,7 +35,7 @@ public class QMotionService {
     }
 
     // Binary http request to Qmotion
-    public void updateQMotionStatus(int status, String token) {
+    public void updateQMotionStatus(int status, String token) throws IOException, HTTPException, Exception {
         /*
          * URL: https://homemanager.tv/main/setBinaryValue
          * Ã¢â‚¬Â¢ ON: user=2164&token=4pd-5f21e6aa764e71b78885&gateway=0000003009&node_id=2&pos=0

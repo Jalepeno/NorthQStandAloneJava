@@ -17,24 +17,29 @@
 
 	<bean id="qPlugModel" class="com.northqstandalone.maven.models.QPlugModel" />
 	<bean id="qMotionModel" class="com.northqstandalone.maven.models.QMotionModel" />
+	<bean id="errorModel" class="com.northqstandalone.maven.models.ErrorModel" />
 
 	<bean id="qPlugController" class="com.northqstandalone.maven.controllers.QPlugController">
 		<property name="qPlugService" ref="qPlugService" />
 		<property name="qPlugModel" ref="qPlugModel" />
+		<property name="errorModel" ref="errorModel" />
 	</bean>
 	
 	<bean id="statusController" class="com.northqstandalone.maven.controllers.StatusController">
 		<property name="northQService" ref="northQService" />
+		<property name="errorModel" ref="errorModel" />
 	</bean>
 
 	<bean id="qMotionController"
 		class="com.northqstandalone.maven.controllers.QMotionController">
 		<property name="qMotionService" ref="qMotionService" />
 		<property name="qMotionModel" ref="qMotionModel" />
+		<property name="errorModel" ref="errorModel" />
 	</bean>
 
 	<bean id="tokenController" class="com.northqstandalone.maven.controllers.TokenController">
 		<property name="tokenService" ref="tokenService" />
+		<property name="errorModel" ref="errorModel" />
 	</bean>
 
 </beans>
