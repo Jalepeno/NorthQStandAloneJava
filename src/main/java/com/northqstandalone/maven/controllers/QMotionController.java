@@ -58,12 +58,25 @@ public class QMotionController implements IQMotionListener{
 		if (qMotionStatus) {
 			// If motion sensor is armed
 			model.setArmed(true);
-			view.setMotionButtonText(0);
+			view.setMotionButtonText(1);
 		} else {
 			// If motion sensor is disarmed
 			model.setArmed(false);
-			view.setMotionButtonText(1);
+			view.setMotionButtonText(0);
 		}
+	}
+	
+	@Override
+	public void onMotionModelUpdate(QMotionModel motionModel) {
+		// TODO Auto-generated method stub
+		this.model = motionModel;
+		view.setMotionButtonText(motionModel.getBinarySensorModel().armed);
+		this.view.invalidate();
+		this.view.validate();
+		this.view.repaint();
+		System.out.println("onMotionModelUpdate called armed status:" +motionModel.getBinarySensorModel().armed);
+		
+		
 	}
 
 
@@ -126,11 +139,11 @@ public class QMotionController implements IQMotionListener{
 				}	
 			}
 		}
-    
-	@Override
-	public void onMotionModelUpdate(QMotionModel motionModel) {
-		// TODO Auto-generated method stub
-		this.model = motionModel;
+
 	}
+
     
 }
+
+
+

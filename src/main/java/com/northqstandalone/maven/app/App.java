@@ -29,7 +29,7 @@ public class App {
 		System.out.println("Token received: " + token);
 		
 		StatusController statusController = (StatusController) factory.getBean("statusController");
-		
+		statusController.setToken(token);
 		QPlugController qPlugController = (QPlugController) factory.getBean("qPlugController");
 
 		qPlugController.setView(view, token, false); // statusController.getQPlugStatus(token)
@@ -37,6 +37,9 @@ public class App {
 		QMotionController qMotionController = (QMotionController) factory.getBean("qMotionController");
 		qMotionController.setView(view, token, statusController.getQMotionStatus(token));
 
+		statusController.setQMotionListener(qMotionController);
+		statusController.setQPlugListener(qPlugController);
+		statusController.getStatus();
 		view.setVisible(true);
 
 		/*

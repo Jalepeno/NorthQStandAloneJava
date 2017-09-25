@@ -28,20 +28,29 @@ public class View extends JFrame {
 
 	BufferedImage turnedOnImage = ImageIO.read(new File("bulbOn.png"));
 	BufferedImage turnedOffImage = ImageIO.read(new File("bulbOff.png"));
-
+	
 	private ImageIcon lightOnIcon = new ImageIcon(turnedOnImage);
 	private ImageIcon lightOffIcon = new ImageIcon(turnedOffImage);
 
-	private String motionString = new String(
-			"Temperature: " + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
+	
+	BufferedImage motionOnImage = ImageIO.read(new File("motionOn.png"));
+	BufferedImage motionOffImage = ImageIO.read(new File("motionOff.png"));
+	
+	
+	private ImageIcon motionOnImageIcon = new ImageIcon(motionOnImage);
+	private ImageIcon motionOffImageIcon = new ImageIcon(motionOffImage);
+	
+//	private String motionString = new String(
+//			"Temperature: " + "\n" + "Humidity: " + "\n" + "Light Intensity: " + "\n" + "Motion: ");
 	private String armString = new String("Arm");
 	private String disarmString = new String("Disarm");
 	
 	private JLabel motionInfoLabel = new JLabel("MOTION STATUS");
 	private JLabel errorMessage = new JLabel(" ");
+	private JLabel motionImage = new JLabel(motionOffImageIcon);
 	private JButton lightButton = new JButton("QPlug", lightOffIcon);
 	private JButton motionButton = new JButton("QMotion");
-	private JTextArea motionInfo = new JTextArea(motionString);
+//	private JTextArea motionInfo = new JTextArea(motionString);
 	private JCheckBox combineCheckBox = new JCheckBox("light on motion");
 
 	public View() throws IOException {
@@ -57,9 +66,12 @@ public class View extends JFrame {
 		motionButtonPanel.add(motionButton, BorderLayout.SOUTH);
 		motionButtonPanel.add(motionInfoLabel, BorderLayout.NORTH);
 
-		motionInfoPanel.add(motionInfo, BorderLayout.NORTH);
+		
+		
+//		motionInfoPanel.add(motionInfo, BorderLayout.NORTH);
+		motionInfoPanel.add(motionImage, BorderLayout.NORTH);
 		motionInfoPanel.add(motionButtonPanel, BorderLayout.SOUTH);
-		motionInfo.setOpaque(false);
+//		motionInfo.setOpaque(false);
 
 		mainPanel.add(lightButton, BorderLayout.EAST);
 		mainPanel.add(errorMessage, BorderLayout.BEFORE_FIRST_LINE);
@@ -77,6 +89,10 @@ public class View extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 	}
+	
+	public boolean IsCombinedChecked() {
+		return combineCheckBox.isSelected();
+	}
 
 	public void addQPlugListener(ActionListener listenForQPlugButton) {
 		lightButton.addActionListener(listenForQPlugButton);
@@ -88,7 +104,7 @@ public class View extends JFrame {
 	}
 
 	public void setIcon(int status) {
-		if (status == 1) {
+		if (status > 0) {
 			lightButton.setIcon(lightOnIcon);
 		} else if (status == 0) {
 			lightButton.setIcon(lightOffIcon);
@@ -96,10 +112,10 @@ public class View extends JFrame {
 	}
 
 	public void setMotionButtonText(int status) {
-		if (status == 1) {
+		if (status == 0) {
 			motionButton.setText(armString);
 			setMotionInfoLabel(0);
-		} else if (status == 0) {
+		} else if (status == 1) {
 			motionButton.setText(disarmString);
 			setMotionInfoLabel(1);
 		}
@@ -110,6 +126,14 @@ public class View extends JFrame {
 			motionInfoLabel.setText("MotionSensor: Armed");
 		} else if (status == 0) {
 			motionInfoLabel.setText("MotionSensor: Disarmed");
+		}
+	}
+	
+	public void setMotionImage(boolean active) {
+		if(active) {
+			motionImage.setIcon(motionOnImageIcon);
+		}else {
+			motionImage.setIcon(motionOffImageIcon);
 		}
 	}
 	
