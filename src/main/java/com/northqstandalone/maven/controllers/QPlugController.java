@@ -73,9 +73,25 @@ public class QPlugController implements IQPlugListener{
 	public void onPlugModelUpdate(QPlugModel plugModel) {
 		// TODO Auto-generated method stub
 		this.model = plugModel;
-		setQPlugStatus(model.getStatus() != 0);
+		this.view.setIcon(this.model.getStatus());
+		this.view.invalidate();
+		this.view.validate();
+		this.view.repaint();
+		System.out.println("onPlugModelUpdate called");
 		
-		
+	}
+
+	@Override
+	public void onNotificationUpdate(boolean timeLessThan30) {
+		// TODO Auto-generated method stub
+		this.view.setMotionImage(timeLessThan30);
+		if(timeLessThan30 && this.view.IsCombinedChecked()) {
+			try {
+				service.turnOnPlug(); 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
